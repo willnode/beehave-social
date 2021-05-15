@@ -1,8 +1,8 @@
-package com.beehavesocial.mainactivity
+package com.beehavesocial.mainactivity.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
+import com.beehavesocial.mainactivity.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
