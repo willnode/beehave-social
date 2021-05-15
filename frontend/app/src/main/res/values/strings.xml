@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MainActivity</string>
+    <string name="Home">Home</string>
+    <string name="AddPost">Add Post</string>
+    <string name="MoodStatistic">Mood Statistics</string>
+    <string name="Settings">Settings</string>
 </resources>
