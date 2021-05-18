@@ -13,4 +13,13 @@
     <string name="sign_up2">New User? Register Now</string>
     <string name="name">Name</string>
     <string name="Welcome">Welcome</string>
+    <string name="media">media</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account">Account</string>
+    <string name="languange">Languange</string>
+    <string name="about_app">About App</string>
+    <string name="log_out">Log Out</string>
 </resources>
