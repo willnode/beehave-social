@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.beehavesocial.mainactivity.R
-import com.beehavesocial.mainactivity.SettingsFragment
-import com.beehavesocial.mainactivity.SocialMediaFragment
+import com.beehavesocial.mainactivity.fragment.AddPostFragment
+import com.beehavesocial.mainactivity.fragment.SettingsFragment
+import com.beehavesocial.mainactivity.fragment.SocialMediaFragment
 import com.beehavesocial.mainactivity.fragment.ForumFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -33,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
             var id = item.itemId
             when (id) {
                 R.id.page_1 -> fragment = SocialMediaFragment()
+                R.id.page_2 -> fragment = AddPostFragment()
                 R.id.page_3 -> fragment = ForumFragment()
                 R.id.page_4 -> fragment = SettingsFragment()
             }

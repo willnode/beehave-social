@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AddPostFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/text_post"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_motivation"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/post"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounder"
+        android:text="@string/motivation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_relotionsip"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/post"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="48dp"
+        android:layout_toRightOf="@+id/btn_motivation"
+        android:background="@drawable/rounder"
+        android:text="@string/relationship" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_work"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btn_motivation"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounder"
+        android:text="@string/work" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_finance"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btn_relotionsip"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/btn_motivation"
+        android:background="@drawable/rounder"
+        android:text="@string/finance" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_work"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/link"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!--        app:startIconDrawable="@drawable/link"-->
+        <!--        app:startIconContentDescription="link"-->
+        <!--        app:startIconCheckable="false"-->
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/link"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape"
+
+        android:text="@string/send" />
+</RelativeLayout>

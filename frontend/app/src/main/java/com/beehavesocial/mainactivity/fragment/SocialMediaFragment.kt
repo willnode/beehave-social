@@ -1,4 +1,4 @@
-package com.beehavesocial.mainactivity
+package com.beehavesocial.mainactivity.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
