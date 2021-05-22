@@ -9,6 +9,7 @@ dataset = [
     "Mengapa tuhan aku dilahirkan berbeda? Aku hanya ingin hidup bahagia seperti teman-temanku, bermain bersama keluarga lengkap dengan ayah, ibu dan saudara",
     "Saya mengalami masalah finansial keluarga, hingga menyebabkan perkelahian besar antara saya dan pasangan. Saya sangat depresi dan butuh saran dalam mengatur keuangan keluarga yang baik",
     "2 tahun belakang saya mengalami masalah depresi karena tugas kuliah yang sangat menumpuk. Bulan-bulan terakhir ini, masalah ini dapat mengakibatkan terganggunya fisik saya hingga sering jatuh sakit."
+    "Banyak cara untuk kita selalu bangun ketika kita terjatuh. Tapi mengapa hati tak pernah mau kompak dengan raga?"
 ]
 
 factory = StemmerFactory()
