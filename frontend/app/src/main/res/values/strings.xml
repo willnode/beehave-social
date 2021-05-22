@@ -32,4 +32,7 @@
     <string name="finance">Finance</string>
     <string name="link">Link</string>
     <string name="send">Send</string>
+    <string name="image_content">Image Content</string>
+    <string name="content_title">Title Content</string>
+    <string name="content_category">Category Content</string>
 </resources>

@@ -14,4 +14,9 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.MovieCatalogue.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MovieCatalogue.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>
