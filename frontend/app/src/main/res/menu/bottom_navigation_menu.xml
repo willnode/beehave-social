@@ -13,8 +13,8 @@
     <item
         android:id="@+id/page_3"
         android:enabled="true"
-        android:icon="@drawable/scale"
-        android:title="@string/MoodStatistic"/>
+        android:icon="@drawable/cloud"
+        android:title="@string/Forum"/>
     <item
         android:id="@+id/page_4"
         android:enabled="true"
