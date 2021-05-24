@@ -13,9 +13,9 @@
         <activity android:name=".view.DetailSocialMediaActivity" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".view.SplashScreen" />
+        <activity android:name=".view.HomeActivity" />
         <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.HomeActivity">
+        <activity android:name=".view.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
