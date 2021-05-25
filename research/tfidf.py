@@ -16,7 +16,8 @@ dataset = [
 ]
 
 dataframe = pd.DataFrame(dataset, columns=['content'])
-
+dataframe.index.name = 'id'
+#print(dataframe)
 factory = StemmerFactory()
 stemmer = factory.create_stemmer()
 
@@ -43,4 +44,5 @@ for i in range(len(dataframe)):
     keywords.append(keyword)
 
 dataframe['keywords'] = keywords
-print(dataframe)
+
+dataframe.to_csv("wallcoba.csv")
