@@ -29,7 +29,7 @@ function checkAuth(req, res, next) {
  */
 /**
  *
- * @returns
+ * @returns {import("../models/user.js").User}
  */
 function user(req) {
     return req.user;

@@ -74,8 +74,8 @@ export default function () {
                 }
             })
             if (err)
-                throw new HttpError('NIK/HP sudah terdaftar', 201)
-            let id = (await new UserModel().atUsername(nik)).id;
+                throw new HttpError('Email sudah terdaftar', 201)
+            let id = (await new UserModel().atUsername(email)).id;
             const token = jwt.sign({
                 id
             }, config.jwt.secret, {
