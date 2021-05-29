@@ -25,7 +25,7 @@ export default function () {
             }
             var model = new UserModel();
             var row = await model.atUsername(username);
-            if (row && row.role == 'user' && bcryptjs.compareSync(password, row.password)) {
+            if (row && bcryptjs.compareSync(password, row.password)) {
                 const token = jwt.sign({
                     id: row.id
                 }, config.jwt.secret, {
