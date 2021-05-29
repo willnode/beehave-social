@@ -61,20 +61,16 @@ export default function () {
                 throw new HttpError('Password kurang kuat', 201);
             }
 
-            var err;
-            await db().transaction(async function (trx) {
+            var err = await db().transaction(async function (trx) {
                 try {
                     await new UserModel().save({
                         name,
-                        phone,
-                        nik,
+                        email,
                         password: bcryptjs.hashSync(password),
-                        role: 'user',
                     }, trx);
-                    await trx.commit();
+                    return null;
                 } catch (error) {
-                    await trx.rollback();
-                    err = error;
+                    return error;
                 }
             })
             if (err)
@@ -89,29 +85,6 @@ export default function () {
                 status: 'success',
                 token: token,
             });
-        } catch (error) {
-            next(error)
-        }
-    });
-
-    router.post('/pin', checkAuth, async (req, res, next) => {
-        try {
-            const {
-                password,
-                pin,
-            } = req.body;
-            var u = user(req);
-            if (bcryptjs.compareSync(password, u.password)) {
-                await new UserModel().save({
-                    id: u.id,
-                    pin: pin
-                });
-                return res.json({
-                    status: 'success',
-                });
-            } else {
-                throw new HttpError('Password salah', 103);
-            }
         } catch (error) {
             next(error)
         }
