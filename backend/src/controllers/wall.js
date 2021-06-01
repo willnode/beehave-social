@@ -16,7 +16,7 @@ import WallFeedModel from '../models/wallfeed.js';
 
 export default function () {
     var router = express.Router();
-    router.get('/', async (req, res, next) => {
+    router.get('/', checkAuthOptional, async (req, res, next) => {
         var {
             start_from
         } = req.query;
@@ -30,9 +30,19 @@ export default function () {
             'viewers',
             'created_at',
         ]))
+        var rating = null;
+        var u = user(req);
+        if (u) {
+            var awall = await new WallFeedModel().atWallAndUser(u.id, id);
+            if (awall)
+                rating = awall.rating;
+        }
         res.json({
             status: 'success',
-            data: r,
+            data: {
+                ...r,
+                user_rating: rating
+            },
         })
     });
 

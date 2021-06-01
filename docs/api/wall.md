@@ -33,6 +33,7 @@
         "raters": 2,
         "viewers": 3,
         "created_at": "2020-02-02T01:01:01Z",
+        "user_rating": null
     }
 }
 ```
