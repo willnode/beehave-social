@@ -9,8 +9,10 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:theme="@style/Theme.MovieCatalogue.AppBarOverlay">
+        android:theme="@style/Theme.MovieCatalogue.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -25,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <include android:id="@+id/detail_social_media" layout="@layout/content_detail_forum" />
     </androidx.core.widget.NestedScrollView>
 

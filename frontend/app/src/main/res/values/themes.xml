@@ -13,10 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
+    <style name="CustomBackground" >
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">#008</item>
+    </style>
     <style name="Theme.MovieCatalogue.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.MovieCatalogue.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
+<!--    <style name="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox" parent="Theme.MaterialComponents.DayNight.DarkActionBar"  />-->
 
 </resources>

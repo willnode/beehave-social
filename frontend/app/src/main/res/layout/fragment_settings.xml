@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,22 +10,23 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@mipmap/ic_launcher"/>
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_image"/>
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif-black"
             tools:text="Name" />
 
     </LinearLayout>
@@ -32,42 +34,69 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
             android:id="@+id/btn_account"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="5dp"
             android:text="@string/account"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_account"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_next"
+           />
 
         <Button
             android:id="@+id/btn_languange"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="5dp"
             android:text="@string/languange"
-            android:textAlignment="viewStart" />
+            android:drawableLeft="@drawable/ic_language"
+            android:textAlignment="viewStart"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_next"
+           />
 
         <Button
             android:id="@+id/btn_about"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="5dp"
             android:text="@string/about_app"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:drawableLeft="@drawable/ic_about"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:drawableRight="@drawable/ic_next"/>
 
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="5dp"
             android:text="@string/log_out"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:drawableLeft="@drawable/ic_out"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableRight="@drawable/ic_next"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

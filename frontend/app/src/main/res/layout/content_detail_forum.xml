@@ -7,27 +7,64 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:descendantFocusability="blocksDescendants"
-    android:padding="16dp"
-    android:background="@color/black">
+    android:padding="16dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/forum_image_content"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginTop="18dp"
         android:contentDescription="@string/image_content"
-        tools:src="@drawable/contentimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedSquare"
+        tools:src="@color/light_orange" />
+
+
+    <ToggleButton
+        android:id="@+id/tb_favorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/favorite_toggle"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="@+id/forum_image_content"
+        app:layout_constraintEnd_toStartOf="@+id/ib_comment"
+        app:layout_constraintStart_toStartOf="@+id/forum_image_content"
+        app:layout_constraintTop_toTopOf="@+id/forum_image_content"
+        app:layout_constraintVertical_bias="0.944" />
+
+    <ImageButton
+        android:id="@+id/ib_comment"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/ic_comment"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/ib_share"
+        app:layout_constraintTop_toTopOf="@+id/tb_favorite"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib_share"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="108dp"
+        android:background="@drawable/ic_share"
+        app:layout_constraintEnd_toEndOf="@+id/forum_image_content"
+        app:layout_constraintTop_toTopOf="@+id/ib_comment" />
 
     <TextView
         android:id="@+id/forum_text_content_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="18dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forum_text_content_title"
@@ -54,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_marginEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
