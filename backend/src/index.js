@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import minimist from 'minimist';
 import auth from './controllers/auth.js';
+import { writeLog } from './services/log.js';
 
 const args = minimist(process.argv.slice(2));
 const app = express();

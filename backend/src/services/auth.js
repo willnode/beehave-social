@@ -23,10 +23,13 @@ function checkAuth(req, res, next) {
         next()
     })
 }
-
 /**
  *
- * @returns {User}
+ * @typedef {import(../models/user.js).User}
+ */
+/**
+ *
+ * @returns {import("../models/user.js").User}
  */
 function user(req) {
     return req.user;

@@ -10,9 +10,7 @@ class UserModel extends BaseModel {
      */
     async atUsername(user) {
         return await this.conn().where({
-            phone: user
-        }).orWhere({
-            nik: user,
+            email: user
         }).first();
     }
     /**
@@ -27,6 +25,10 @@ class UserModel extends BaseModel {
 
 /**
  * @typedef User
+ * @property {number} id
+ * @property {string} name
+ * @property {string} email
+ * @property {string} password
  */
 
 export default UserModel;

@@ -15,3 +15,10 @@ Model Reinforcement Learning di Python
 
 Referensi
 + https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+
+
+Install
+
+```bash
+pip install -r requirements.txt
+```
