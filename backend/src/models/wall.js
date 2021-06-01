@@ -12,16 +12,6 @@ class WallModel extends BaseModel {
      * @param {string} user
      * @returns {Promise<Wall>}
      */
-    async atWallname(user) {
-        return await this.conn().where({
-            email: user
-        }).first();
-    }
-    /**
-     *
-     * @param {string} user
-     * @returns {Promise<Wall>}
-     */
     atId(id) {
         return super.atId(id);
     }
