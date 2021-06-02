@@ -12,7 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import android.provider.Settings
 import android.view.*
 import com.beehavesocial.capstone.R
+import com.beehavesocial.capstone.databinding.ActivityAboutBinding.inflate
 import com.beehavesocial.capstone.view.AboutActivity
+import com.beehavesocial.capstone.view.login.LoginActivity
 import com.beehavesocial.capstone.view.register.RegisterActivity
 
 
@@ -20,11 +22,13 @@ import com.beehavesocial.capstone.view.register.RegisterActivity
 class SettingsFragment : Fragment()  {
 
     private lateinit var binding: FragmentSettingsBinding
-
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
 
     }
 
@@ -52,6 +56,11 @@ class SettingsFragment : Fragment()  {
             binding.tvName.text=it.name
         })
 
+        binding.btnAccount.setOnClickListener {
+            val detail = Intent(getActivity(), DetailProfile::class.java)
+            startActivity(detail)
+        }
+
         binding.btnLanguange.setOnClickListener {
             val language = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(language)
@@ -61,6 +70,11 @@ class SettingsFragment : Fragment()  {
         binding.btnAbout.setOnClickListener{
             val about = Intent(getActivity(),AboutActivity::class.java)
             getActivity()?.startActivity(about)
+        }
+
+        binding.btnLogout.setOnClickListener {
+            val logout = Intent(getActivity(), LoginActivity::class.java)
+            startActivity(logout)
         }
 
     }
