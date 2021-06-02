@@ -15,7 +15,7 @@
         <activity android:name=".view.DetailProfile"></activity>
         <activity android:name=".view.AboutActivity" />
         <activity android:name=".view.DetailForumActivity" />
-        <activity android:name=".view.DetailSocialMediaActivity" />
+        <activity android:name=".view.article.DetailSocialMediaActivity" />
         <activity android:name=".view.register.RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".view.HomeActivity" />

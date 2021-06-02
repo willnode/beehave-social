@@ -1,11 +1,13 @@
 package com.beehavesocial.capstone.api
 
 import com.beehavesocial.capstone.model.article.ArticleResponse
+import com.beehavesocial.capstone.model.article.DetailArticleResponse
 import com.beehavesocial.capstone.model.daftar.DaftarUserRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserResponse
 import com.beehavesocial.capstone.model.login.LoginUserRequest
 import com.beehavesocial.capstone.model.login.LoginUserResponse
 import com.beehavesocial.capstone.model.profile.ProfileUser
+import com.bumptech.glide.load.engine.Resource
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -20,6 +22,9 @@ interface ApiService {
     suspend fun article(
 //        @Path("wall/:start_from") token: String
     ): Response<ArticleResponse>
+
+    @GET("wall")
+    suspend fun articleDetail(id: Int): Response<DetailArticleResponse>
 
     @POST("auth/register")
     suspend fun userRegister(

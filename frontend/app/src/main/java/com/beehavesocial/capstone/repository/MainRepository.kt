@@ -2,6 +2,7 @@ package com.beehavesocial.capstone.repository
 
 import com.beehavesocial.capstone.api.ApiService
 import com.beehavesocial.capstone.model.article.ArticleResponse
+import com.beehavesocial.capstone.model.article.DetailArticleResponse
 import com.beehavesocial.capstone.model.daftar.DaftarUserRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserResponse
 import com.beehavesocial.capstone.model.login.LoginUserRequest
@@ -51,6 +52,17 @@ class MainRepository @Inject constructor(
                 }
                 return Resource.Error(response.message())
             }
+    }
+
+    suspend fun getDetailArticle(id:Int): Resource<DetailArticleResponse>{
+        apiService.articleDetail(id).let { response ->
+            if (response.isSuccessful){
+                response.body()?.let { detail ->
+                    return Resource.Success(detail)
+                }
+            }
+            return Resource.Error(response.message())
+        }
     }
 
 }

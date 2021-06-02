@@ -1,5 +1,6 @@
 package com.beehavesocial.capstone.view.article
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,12 @@ class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.GridViewHolder>() {
                 tvDesctiption.text = article.excerpt
                 tvViewers.text=article.viewers.toString().trim()
                 tvRating.text=article.rating.toString().trim()
+
+                itemView.setOnClickListener{
+                    val detailIntent = Intent(itemView.context, DetailSocialMediaActivity::class.java)
+                    detailIntent.putExtra(DetailSocialMediaActivity.EXTRA_DATA.toString(),article.id)
+                    itemView.context.startActivity(detailIntent)
+                }
 
             }
         }

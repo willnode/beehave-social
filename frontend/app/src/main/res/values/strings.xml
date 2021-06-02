@@ -37,4 +37,8 @@
     <string name="content_category">Category Content</string>
     <string name="no_handphone">No Handphone</string>
     <string name="user_avatar">Image</string>
+    <string name="source">Source</string>
+    <string name="published">Published</string>
+    <string name="updated">Updated</string>
+    <string name="keyword">Keyword :</string>
 </resources>

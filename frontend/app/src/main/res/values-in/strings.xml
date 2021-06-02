@@ -37,4 +37,9 @@
     <string name="content_title">Judul Content</string>
     <string name="content_category">Kategori Content</string>
     <string name="no_handphone">No Handphone</string>
+    <string name="user_avatar">Gambar</string>
+    <string name="source">Sumber</string>
+    <string name="published">Diplubikasikan</string>
+    <string name="updated">Diperbarui</string>
+    <string name="keyword">Kata Kunci :</string>
 </resources>
