@@ -12,6 +12,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import android.provider.Settings
 import android.view.*
 import com.beehavesocial.capstone.R
+import com.beehavesocial.capstone.view.AboutActivity
+import com.beehavesocial.capstone.view.register.RegisterActivity
 
 
 @AndroidEntryPoint
@@ -51,10 +53,16 @@ class SettingsFragment : Fragment()  {
         })
 
         binding.btnLanguange.setOnClickListener {
-            val tt = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(tt)
+            val language = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(language)
 
         }
+
+        binding.btnAbout.setOnClickListener{
+            val about = Intent(getActivity(),AboutActivity::class.java)
+            getActivity()?.startActivity(about)
+        }
+
     }
 
 
