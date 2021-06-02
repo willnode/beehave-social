@@ -1,5 +1,6 @@
 package com.beehavesocial.capstone.api
 
+import com.beehavesocial.capstone.model.article.ArticleResponse
 import com.beehavesocial.capstone.model.daftar.DaftarUserRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserResponse
 import com.beehavesocial.capstone.model.login.LoginUserRequest
@@ -15,6 +16,11 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<ProfileUser>
 
+    @GET("wall")
+    suspend fun article(
+//        @Path("wall/:start_from") token: String
+    ): Response<ArticleResponse>
+
     @POST("auth/register")
     suspend fun userRegister(
         @Body daftarUserRequest: DaftarUserRequest
@@ -23,5 +29,6 @@ interface ApiService {
     @POST("auth/login")
     suspend fun userLogin(
         @Body loginUserRequest: LoginUserRequest
-    ):Response<LoginUserResponse>
+    ): Response<LoginUserResponse>
+
 }

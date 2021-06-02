@@ -20,6 +20,8 @@ class ProfileViewModel  @Inject constructor(
     val responseProfile = MutableLiveData<ProfileUser>()
     val action = MutableLiveData<String>()
 
+
+
     fun getProfile(){
         viewModelScope.launch {
             when (val response = mainRepository.getProfileUser("Bearer "+Constant.BEARER)) {
