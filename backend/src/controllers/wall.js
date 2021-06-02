@@ -16,36 +16,26 @@ import WallFeedModel from '../models/wallfeed.js';
 
 export default function () {
     var router = express.Router();
-    router.get('/', checkAuthOptional, async (req, res, next) => {
+    router.get('/', async (req, res, next) => {
         var {
             start_from
         } = req.query;
         start_from = parseInt(start_from || '0');
         var wm = new WallModel();
-        var r = wm.expand(await wm.conn().join('user', 'user.id = wall.user_id').orderBy('predicted_score', 'desc').limit(25).offset(start_from).select([
+        var query = await wm.conn().join('user', 'user.id', 'wall.user_id').orderBy('predicted_score', 'desc').limit(25).offset(start_from).select([
             'wall.id as id',
-            'IF(CHAR_LENGTH(content) > 50, CONCAT(LEFT(content, 47),"..."), content) as excerpt',
+            'title',
             'rating',
             'raters',
             'viewers',
             'created_at',
-        ]))
-        var rating = null;
-        var u = user(req);
-        if (u) {
-            var awall = await new WallFeedModel().atWallAndUser(u.id, id);
-            if (awall)
-                rating = awall.rating;
-        }
+        ]).select(db().raw('IF(CHAR_LENGTH(content) > 103, CONCAT(LEFT(content, 100),"..."), content) as excerpt'));
+        var r = wm.expandAll(query);
         res.json({
             status: 'success',
-            data: {
-                ...r,
-                user_rating: rating
-            },
+            data: r,
         })
     });
-
     router.get('/:id', checkAuthOptional, async (req, res, next) => {
         var {
             id
@@ -54,6 +44,7 @@ export default function () {
         var wm = new WallModel();
         var wfm = new WallFeedModel();
         var w = await wm.atId(id);
+        var rating = null;
         if (!w)
             throw new HttpError('Artikel tidak ditemukan', 404);
         if (u) {
@@ -68,13 +59,18 @@ export default function () {
                 w.viewers++;
                 await wm.save(w);
             }
+            var awall = await new WallFeedModel().atWallAndUser(u.id, id);
+            if (awall)
+                rating = awall.rating;
         }
         res.json({
             status: 'success',
-            data: w,
+            data: {
+                ...w,
+                user_rating: rating
+            },
         })
     });
-
     router.post('/:id', checkAuth, async (req, res, next) => {
         var {
             id
@@ -122,4 +118,5 @@ export default function () {
             status: 'success',
         })
     });
+    return router;
 }
