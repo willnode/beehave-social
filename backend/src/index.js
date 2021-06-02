@@ -2,13 +2,19 @@ import cors from 'cors';
 import express from 'express';
 import minimist from 'minimist';
 import auth from './controllers/auth.js';
-import { writeLog } from './services/log.js';
+import {
+    writeLog
+} from './services/log.js';
 
 const args = minimist(process.argv.slice(2));
 const app = express();
 const port = args.port || 3000;
 
-app.use(cors());
+app.use(cors({
+    allowedHeaders: [
+        'Authorization'
+    ]
+}));
 app.use(express.json());
 app.use('/auth', auth());
 app.use('/public', express.static('public'));

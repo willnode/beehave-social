@@ -23,6 +23,19 @@ function checkAuth(req, res, next) {
         next()
     })
 }
+
+function checkAuthOptional(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) next();
+
+    jwt.verify(token, config.jwt.secret, async (err, user) => {
+        if (err) return next();
+        req.user = await new UserModel().atId(user.id);
+        next()
+    })
+}
 /**
  *
  * @typedef {import(../models/user.js).User}
@@ -38,4 +51,5 @@ function user(req) {
 export {
     user,
     checkAuth,
+    checkAuthOptional
 }
