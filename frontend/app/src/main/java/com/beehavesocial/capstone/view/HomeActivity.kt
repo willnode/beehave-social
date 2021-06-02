@@ -1,5 +1,6 @@
 package com.beehavesocial.capstone.view
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,8 +11,11 @@ import com.beehavesocial.capstone.fragment.AddPostFragment
 import com.beehavesocial.capstone.fragment.SettingsFragment
 import com.beehavesocial.capstone.fragment.SocialMediaFragment
 import com.beehavesocial.capstone.fragment.ForumFragment
+import com.beehavesocial.capstone.utils.Constant
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigation: BottomNavigationView
@@ -26,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
         fragmentManager = supportFragmentManager
 
+        Log.d("bearer token", Constant.BEARER)
         //Untuk inisialisasi fragment pertama kali
         fragmentManager.beginTransaction().replace(R.id.main_container, SocialMediaFragment()).commit()
 
@@ -42,6 +47,7 @@ class HomeActivity : AppCompatActivity() {
             transaction.replace(R.id.main_container, fragment).commit()
             true
         }
+
     }
 
     companion object {

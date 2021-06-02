@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beehavesocial.capstone.model.login.LoginUserRequest
 import com.beehavesocial.capstone.repository.MainRepository
+import com.beehavesocial.capstone.utils.Constant
 import com.beehavesocial.capstone.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -34,6 +35,7 @@ class LoginViewModel @Inject constructor(
             when (val response = mainRepository.userLogin(daftarUserRequest)) {
                 is Resource.Success -> {
                     if (response.data?.status == "success") {
+                        Constant.BEARER = response.data.token!!
                         action.postValue(ACTION_LOGIN_SUCCESS)
                     }
                 }
