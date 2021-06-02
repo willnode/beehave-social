@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-black"
             tools:text="Name" />
