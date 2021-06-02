@@ -11,9 +11,8 @@ import com.beehavesocial.capstone.view.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.provider.Settings
 import android.view.*
-import com.beehavesocial.capstone.R
-import com.beehavesocial.capstone.databinding.ActivityAboutBinding.inflate
 import com.beehavesocial.capstone.view.AboutActivity
+import com.beehavesocial.capstone.view.DetailProfile
 import com.beehavesocial.capstone.view.login.LoginActivity
 import com.beehavesocial.capstone.view.register.RegisterActivity
 
@@ -52,7 +51,7 @@ class SettingsFragment : Fragment()  {
 
         viewModel.getProfile()
         viewModel.responseProfile.observe(viewLifecycleOwner, {
-//            Log.d("Bearer", it.toString())
+          Log.d("Bearer", it.toString())
             binding.tvName.text=it.name
         })
 

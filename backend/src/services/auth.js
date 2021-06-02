@@ -28,7 +28,7 @@ function checkAuthOptional(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
 
-    if (token == null) next();
+    if (token == null) return next();
 
     jwt.verify(token, config.jwt.secret, async (err, user) => {
         if (err) return next();
