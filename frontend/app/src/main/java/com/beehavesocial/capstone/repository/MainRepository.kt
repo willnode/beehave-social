@@ -3,6 +3,8 @@ package com.beehavesocial.capstone.repository
 import com.beehavesocial.capstone.api.ApiService
 import com.beehavesocial.capstone.model.article.ArticleResponse
 import com.beehavesocial.capstone.model.article.DetailArticleResponse
+import com.beehavesocial.capstone.model.article.RatedRequest
+
 import com.beehavesocial.capstone.model.daftar.DaftarUserRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserResponse
 import com.beehavesocial.capstone.model.login.LoginUserRequest
@@ -34,6 +36,17 @@ class MainRepository @Inject constructor(
         }
     }
 
+    suspend fun rated(ratedRequest: RatedRequest): Resource<DetailArticleResponse> {
+        apiService.rated(ratedRequest).let { response ->
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Resource.Success(it)
+                }
+            }
+            return Resource.Error(response.message())
+        }
+    }
+
     suspend fun getProfileUser(bearer: String): Resource<ProfileUser> {
         apiService.profileUser(bearer).let { response ->
             if (response.isSuccessful) {
@@ -43,20 +56,20 @@ class MainRepository @Inject constructor(
         }
     }
 
-    suspend fun getArticle():Resource<ArticleResponse>{
+    suspend fun getArticle(): Resource<ArticleResponse> {
         apiService.article().let { response ->
-                if (response.isSuccessful){
-                    response.body()?.let { article ->
-                        return Resource.Success(article)
-                    }
+            if (response.isSuccessful) {
+                response.body()?.let { article ->
+                    return Resource.Success(article)
                 }
-                return Resource.Error(response.message())
             }
+            return Resource.Error(response.message())
+        }
     }
 
-    suspend fun getDetailArticle(id:Int): Resource<DetailArticleResponse>{
+    suspend fun getDetailArticle(id: Int): Resource<DetailArticleResponse> {
         apiService.articleDetail(id).let { response ->
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 response.body()?.let { detail ->
                     return Resource.Success(detail)
                 }
@@ -64,5 +77,6 @@ class MainRepository @Inject constructor(
             return Resource.Error(response.message())
         }
     }
+
 
 }

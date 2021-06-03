@@ -18,7 +18,7 @@ class DetailSocialMediaActivity : AppCompatActivity() {
 
     lateinit var binding: ContentDetailSocialMediaBinding
     private val detailArticleViewModel: DetailArticleViewModel by viewModels()
- 
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

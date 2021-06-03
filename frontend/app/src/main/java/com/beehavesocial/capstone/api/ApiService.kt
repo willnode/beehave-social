@@ -2,6 +2,7 @@ package com.beehavesocial.capstone.api
 
 import com.beehavesocial.capstone.model.article.ArticleResponse
 import com.beehavesocial.capstone.model.article.DetailArticleResponse
+import com.beehavesocial.capstone.model.article.RatedRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserRequest
 import com.beehavesocial.capstone.model.daftar.DaftarUserResponse
 import com.beehavesocial.capstone.model.login.LoginUserRequest
@@ -23,7 +24,7 @@ interface ApiService {
     ): Response<ArticleResponse>
 
     @GET("wall/{id}")
-    suspend fun articleDetail(@Path("id")id:Int): Response<DetailArticleResponse>
+    suspend fun articleDetail(@Path("id") id: Int): Response<DetailArticleResponse>
 
     @POST("auth/register")
     suspend fun userRegister(
@@ -34,5 +35,11 @@ interface ApiService {
     suspend fun userLogin(
         @Body loginUserRequest: LoginUserRequest
     ): Response<LoginUserResponse>
+
+    @POST("wall{id}")
+  suspend fun rated(
+        @Body RatedRequest: RatedRequest
+  ): Response<DetailArticleResponse>
+
 
 }
