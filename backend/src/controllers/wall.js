@@ -94,7 +94,6 @@ export default function () {
                 }, trx)
                 return await lastInsertId(trx);
             });
-
             res.json({
                 status: 'success',
                 id,
@@ -124,7 +123,7 @@ export default function () {
             if (u) {
                 var analytics = await wfm.atWallAndUser(u.id, id);
                 if (!analytics) {
-                    analytics = analytics.expand({
+                    analytics = wfm.expand({
                         user_id: u.id,
                         wall_id: id,
                     });
