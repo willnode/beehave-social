@@ -4,7 +4,9 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import HttpError from '../services/err.js';
 import config from '../../config.js';
-import db from '../services/db.js';
+import db, {
+    lastInsertId
+} from '../services/db.js';
 import {
     checkAuth,
     checkAuthOptional,
@@ -71,52 +73,87 @@ export default function () {
             },
         })
     });
-    router.post('/:id', checkAuth, async (req, res, next) => {
-        var {
-            id
-        } = req.params;
-        var {
-            action,
-            rating,
-        } = req.body;
-        var u = user(req);
-        var wm = new WallModel();
-        var wfm = new WallFeedModel();
-        var w = await wm.atId(id);
-        if (rating < 0 || rating > 5) {
-            throw new HttpError('Rating diluar batas', 401);
-        }
-        if (!w)
-            throw new HttpError('Artikel tidak ditemukan', 404);
-        if (u) {
-            var analytics = await wfm.atWallAndUser(u.id, id);
-            if (!analytics) {
-                analytics = analytics.expand({
+    router.post('/', checkAuth, async (req, res, next) => {
+        try {
+            var {
+                title,
+                content,
+                source
+            } = req.body;
+            if (!title || !content) {
+                throw new HttpError('Judul atau content dibutuhkan', 401);
+            }
+            var u = user(req);
+            var wm = new WallModel();
+            var id = await db().transaction(async trx =>  {
+                await wm.save({
                     user_id: u.id,
-                    wall_id: id,
-                });
-            }
-            if (!analytics.rating) {
-                if (w.rating) {
-                    w.rating = (w.rating * w.raters + rating) / (w.raters + 1);
-                } else {
-                    w.rating = rating;
-                }
-                w.raters++;
-            } else {
-                if (w.rating) {
-                    w.rating = (w.rating * w.raters - analytics.rating + rating) / (w.raters);
-                } else {
-                    w.rating = rating;
-                }
-            }
-            await wm.save(w);
-            analytics.rating = rating;
-            await wfm.save(analytics);
+                    content,
+                    title,
+                    source,
+                }, trx)
+                return await lastInsertId(trx);
+            });
+
+            res.json({
+                status: 'success',
+                id,
+            })
+        } catch (error) {
+            next(error);
         }
-        res.json({
-            status: 'success',
-        })
+    })
+    router.post('/:id', checkAuth, async (req, res, next) => {
+        try {
+            var {
+                id
+            } = req.params;
+            var {
+                action,
+                rating,
+            } = req.body;
+            var u = user(req);
+            var wm = new WallModel();
+            var wfm = new WallFeedModel();
+            var w = await wm.atId(id);
+            if (rating < 0 || rating > 5) {
+                throw new HttpError('Rating diluar batas', 401);
+            }
+            if (!w)
+                throw new HttpError('Artikel tidak ditemukan', 404);
+            if (u) {
+                var analytics = await wfm.atWallAndUser(u.id, id);
+                if (!analytics) {
+                    analytics = analytics.expand({
+                        user_id: u.id,
+                        wall_id: id,
+                    });
+                }
+                if (!analytics.rating) {
+                    if (w.rating) {
+                        w.rating = (w.rating * w.raters + rating) / (w.raters + 1);
+                    } else {
+                        w.rating = rating;
+                    }
+                    w.raters++;
+                } else {
+                    if (w.rating) {
+                        w.rating = (w.rating * w.raters - analytics.rating + rating) / (w.raters);
+                    } else {
+                        w.rating = rating;
+                    }
+                }
+                await wm.save(w);
+                analytics.rating = rating;
+                await wfm.save(analytics);
+            }
+            res.json({
+                status: 'success',
+            })
+
+        } catch (error) {
+            next(error);
+        }
     });
     return router;
 }

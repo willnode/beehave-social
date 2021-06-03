@@ -1,5 +1,8 @@
 import BaseModel from './base.js';
 
+/**
+ * @extends {BaseModel<Wall>}
+ */
 class WallModel extends BaseModel {
     table = 'wall';
     columns = [
