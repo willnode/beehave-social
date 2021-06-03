@@ -20,6 +20,14 @@ function toIsoString(date) {
     return typeof date == 'string' ? date.replace(' ', 'T') + 'Z' : null;
 }
 
+/**
+ *
+ * @param {Transaction} trx
+ */
+ async function lastInsertId(trx) {
+    return (await trx.select(trx.raw('LAST_INSERT_ID() as c')).first()).c;
+}
+
 export default function () {
     return singleton;
 }
@@ -27,4 +35,5 @@ export default function () {
 export {
     timestamp,
     toIsoString,
+    lastInsertId,
 }

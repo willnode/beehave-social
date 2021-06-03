@@ -11,7 +11,7 @@ import _ from 'lodash';
 class BaseModel {
     primaryKey = 'id';
     table = '';
-    columns = [];
+    columns = ['user_id', 'title', 'content', 'source'];
     timestamp = false;
     timestamps = ['created_at', 'updated_at'];
     objects = [];
