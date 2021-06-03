@@ -44,12 +44,12 @@ class SocialMediaFragment : Fragment() {
                     adapter = articleAdapter
                     layoutManager = GridLayoutManager(context,2)
                     setHasFixedSize(true)
-
-                    articleViewModel.getArticle().observe(viewLifecycleOwner, {
-                        if (it.isNotEmpty()) {
-                            articleAdapter.setArticle(it)
-                        }
-                    })
+//
+//                    articleViewModel.getArticle().observe(viewLifecycleOwner, {
+//                        if (it.isNotEmpty()) {
+                            articleAdapter.setArticle(article)
+//                        }
+//                    })
 
                 }
             })

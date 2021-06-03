@@ -20,11 +20,10 @@ interface ApiService {
 
     @GET("wall")
     suspend fun article(
-//        @Path("wall/:start_from") token: String
     ): Response<ArticleResponse>
 
-    @GET("wall")
-    suspend fun articleDetail(id: Int): Response<DetailArticleResponse>
+    @GET("wall/{id}")
+    suspend fun articleDetail(@Path("id")id:Int): Response<DetailArticleResponse>
 
     @POST("auth/register")
     suspend fun userRegister(

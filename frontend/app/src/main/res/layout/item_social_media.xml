@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cd_socialmedia"
-    android:layout_width="180dp"
+    android:layout_width="190dp"
     android:layout_height="160dp"
    android:layout_margin="10dp"
     android:orientation="vertical"
@@ -19,11 +19,20 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_source" />
+
+        <TextView
             android:id="@+id/tv_title"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="@string/title"
             android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/icon"
             android:textAppearance="?attr/textAppearanceHeadline6" />
 
         <TextView
@@ -40,12 +49,13 @@
         <TextView
             android:id="@+id/tv_desctiption"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:text="@string/description"
             android:layout_below="@+id/tv_title"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textSize="10sp"
+            android:justificationMode="inter_word"
             android:textColor="?android:attr/textColorSecondary"
             android:maxLines="3"
             android:ellipsize="end"
@@ -58,7 +68,7 @@
             android:layout_below="@+id/tv_desctiption"
             android:text="1"
             android:drawablePadding="6dp"
-            android:drawableLeft="@drawable/ic_rating"
+            android:drawableLeft="@drawable/ic_reting"
             android:layout_toRightOf="@+id/tv_viewers"
             android:layout_marginTop="20dp"
             android:layout_marginStart="25dp"

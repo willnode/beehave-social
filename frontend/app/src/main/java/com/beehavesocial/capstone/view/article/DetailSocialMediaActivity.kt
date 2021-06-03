@@ -1,5 +1,6 @@
 package com.beehavesocial.capstone.view.article
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -17,12 +18,17 @@ class DetailSocialMediaActivity : AppCompatActivity() {
 
     lateinit var binding: ContentDetailSocialMediaBinding
     private val detailArticleViewModel: DetailArticleViewModel by viewModels()
+ 
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ContentDetailSocialMediaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showDetailArticle()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     private fun detailArticle(article: DetailArticleResponse) {
@@ -30,8 +36,8 @@ class DetailSocialMediaActivity : AppCompatActivity() {
             with(binding) {
                 tvTitle.text = article.data?.title
                 source2.text = article.data?.source
-                published.text = article.data?.createdAt
-                update.text = article.data?.updatedAt
+                tvCreated.text = article.data?.createdAt
+                tvUpdated.text = article.data?.updatedAt
                 tvContent.text = article.data?.content
                 tvKeyword.text = article.data?.keyword
                 tvViewers.text =article.data?.viewers.toString().trim()
@@ -49,5 +55,11 @@ class DetailSocialMediaActivity : AppCompatActivity() {
                 detailArticle(article)
             })
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+
     }
 }

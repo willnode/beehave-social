@@ -62,13 +62,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    //firebase
-    implementation platform('com.google.firebase:firebase-bom:28.0.1')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-auth:21.0.1'
-    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation "com.quickbirdstudios:surveykit:1.1.0"
 
     //lazy provides viewmodel
     implementation "androidx.activity:activity-ktx:${activityVersion}"
@@ -104,13 +97,16 @@ dependencies {
     //glide
     implementation "com.github.bumptech.glide:glide:4.12.0"
 
-    // Declare the dependency for the Firebase ML model downloader library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-ml-modeldownloader-ktx'
+//    // Declare the dependency for the Firebase ML model downloader library
+//    // When using the BoM, you don't specify versions in Firebase library dependencies
+//    implementation 'com.google.firebase:firebase-ml-modeldownloader-ktx'
 
     // Also declare the dependency for the TensorFlow Lite library and specify its version
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'
 
     //round corner progress bar
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+
+    //rendering text HTML
+    implementation 'org.sufficientlysecure:html-textview:3.2'
 }
