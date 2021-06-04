@@ -23,19 +23,20 @@ class RatedViewModel @Inject constructor(
         const val ACTION_RATED_ERROR = "RATED_ERROR"
     }
 
-    val ratedData = MutableLiveData<String>()
+    val action = MutableLiveData<String>()
 
-    fun rated(action:String,rating:String){
+
+    fun rated(id:Int, rating:Int){
         viewModelScope.launch {
 
             val ratedRequest = RatedRequest(
-                action = action,
-                rating = rating?.length
+                rating = rating
             )
 
-        when( val response = mainRepository.rated(ratedRequest)){
+        when( val response = mainRepository.rated(id,"Bearer "+Constant.BEARER,ratedRequest)){
             is Resource.Success ->{
                 if (response.data?.status == "success"){
+                    action.postValue(ACTION_RATED_SUCCESS)
                 }
             }
         }

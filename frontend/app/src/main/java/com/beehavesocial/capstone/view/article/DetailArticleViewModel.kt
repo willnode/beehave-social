@@ -16,7 +16,7 @@ class DetailArticleViewModel @Inject constructor(
 ) : ViewModel() {
     val artData = MutableLiveData<DetailArticleResponse>()
 
-    fun getDetailArticle(id:Int) :MutableLiveData<DetailArticleResponse>{
+    fun getDetailArticle(id:Int){
         viewModelScope.launch {
             when(val response = mainRepository.getDetailArticle(id)){
                 is Resource.Success -> {
@@ -29,6 +29,5 @@ class DetailArticleViewModel @Inject constructor(
                 }
             }
         }
-        return artData
     }
 }

@@ -1,12 +1,12 @@
 package com.beehavesocial.capstone.view.article
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
-import com.beehavesocial.capstone.databinding.ActivityDetailSocialMediaBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.beehavesocial.capstone.databinding.ContentDetailSocialMediaBinding
 import com.beehavesocial.capstone.model.article.DetailArticleResponse
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +18,7 @@ class DetailSocialMediaActivity : AppCompatActivity() {
 
     lateinit var binding: ContentDetailSocialMediaBinding
     private val detailArticleViewModel: DetailArticleViewModel by viewModels()
-
+    private val ratedViewModel: RatedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +40,9 @@ class DetailSocialMediaActivity : AppCompatActivity() {
                 tvUpdated.text = article.data?.updatedAt
                 tvContent.text = article.data?.content
                 tvKeyword.text = article.data?.keyword
-                tvViewers.text =article.data?.viewers.toString().trim()
-                tvRating.text=article.data?.rating.toString().trim()
-
+                tvViewers.text = article.data?.viewers.toString().trim()
+                tvRating.text = article.data?.rating.toString().trim()
+                ratingBar.rating=article.data?.rating!!
             }
         }
     }
@@ -51,15 +51,31 @@ class DetailSocialMediaActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             val id = extras.getInt(EXTRA_DATA.toString(), 0)
-            detailArticleViewModel.getDetailArticle(id).observe(this, { article ->
+            detailArticleViewModel.getDetailArticle(id)
+            detailArticleViewModel.artData.observe(this, { article ->
                 detailArticle(article)
+//                Log.d("detailarticle", article.toString())
+                binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                    rated(rating.toInt(), id)
+                }
             })
         }
+    }
+
+    private fun rated(rating: Int, id: Int) {
+        ratedViewModel.rated(id, rating)
+        ratedViewModel.action.observe(this, {
+            when (it) {
+                RatedViewModel.ACTION_RATED_SUCCESS -> {
+                    Snackbar.make(binding.root, "Berhasil Voting", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
-
     }
 }

@@ -36,8 +36,12 @@ class MainRepository @Inject constructor(
         }
     }
 
-    suspend fun rated(ratedRequest: RatedRequest): Resource<DetailArticleResponse> {
-        apiService.rated(ratedRequest).let { response ->
+    suspend fun rated(
+        id: Int,
+        bearer: String,
+        ratedRequest: RatedRequest
+    ): Resource<DetailArticleResponse> {
+        apiService.rated(id, bearer, ratedRequest).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)

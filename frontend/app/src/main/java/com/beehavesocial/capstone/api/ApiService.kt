@@ -12,7 +12,8 @@ import com.bumptech.glide.load.engine.Resource
 import retrofit2.Response
 import retrofit2.http.*
 
-interface ApiService {
+interface
+ApiService {
 
     @GET("auth/info")
     suspend fun profileUser(
@@ -36,10 +37,12 @@ interface ApiService {
         @Body loginUserRequest: LoginUserRequest
     ): Response<LoginUserResponse>
 
-    @POST("wall{id}")
-  suspend fun rated(
+    @POST("wall/{id}")
+    suspend fun rated(
+        @Path("id") id: Int,
+        @Header("Authorization") token: String,
         @Body RatedRequest: RatedRequest
-  ): Response<DetailArticleResponse>
+    ): Response<DetailArticleResponse>
 
 
 }

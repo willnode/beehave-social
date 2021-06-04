@@ -17,7 +17,7 @@ data class Data(
 	val predictedRating: Double? = null,
 
 	@field:SerializedName("rating")
-	val rating: Int? = null,
+	val rating: Float? = null,
 
 	@field:SerializedName("created_at")
 	val createdAt: String? = null,
