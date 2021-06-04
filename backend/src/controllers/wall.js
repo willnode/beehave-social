@@ -94,7 +94,6 @@ export default function () {
                 }, trx)
                 return await lastInsertId(trx);
             });
-
             res.json({
                 status: 'success',
                 id,
@@ -116,6 +115,9 @@ export default function () {
             var wm = new WallModel();
             var wfm = new WallFeedModel();
             var w = await wm.atId(id);
+            if (rating == null) {
+                throw new HttpError('Rating dibutuhkan', 401);
+            }
             if (rating < 0 || rating > 5) {
                 throw new HttpError('Rating diluar batas', 401);
             }
@@ -124,7 +126,7 @@ export default function () {
             if (u) {
                 var analytics = await wfm.atWallAndUser(u.id, id);
                 if (!analytics) {
-                    analytics = analytics.expand({
+                    analytics = wfm.expand({
                         user_id: u.id,
                         wall_id: id,
                     });
