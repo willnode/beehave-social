@@ -10,7 +10,6 @@ import com.beehavesocial.capstone.R
 import com.beehavesocial.capstone.fragment.AddPostFragment
 import com.beehavesocial.capstone.fragment.SettingsFragment
 import com.beehavesocial.capstone.fragment.SocialMediaFragment
-import com.beehavesocial.capstone.fragment.ForumFragment
 import com.beehavesocial.capstone.utils.Constant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +39,6 @@ class HomeActivity : AppCompatActivity() {
             when (id) {
                 R.id.page_1 -> fragment = SocialMediaFragment()
                 R.id.page_2 -> fragment = AddPostFragment()
-                R.id.page_3 -> fragment = ForumFragment()
                 R.id.page_4 -> fragment = SettingsFragment()
             }
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Beehave</string>
+    <string name="app_name">Beehive</string>
     <string name="Home">Home</string>
     <string name="AddPost">Add Post</string>
     <string name="MoodStatistic">Mood Statistics</string>
@@ -42,4 +42,8 @@
     <string name="updated">Updated</string>
     <string name="keyword">Keyword :</string>
     <string name="text_title">Title</string>
+    <string name="success">Post Success</string>
+    <string name="successLogin">Login Success</string>
+    <string name="successVoting">Voting Success</string>
+    <string name="your_rate">Your Rate</string>
 </resources>

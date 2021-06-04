@@ -1,9 +1,11 @@
 package com.beehavesocial.capstone.view.login
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.beehavesocial.capstone.R
 
 
 import com.beehavesocial.capstone.databinding.ActivityLoginBinding
@@ -15,12 +17,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityLoginBinding
-    private val loginViewModel:LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
@@ -28,12 +30,18 @@ class LoginActivity : AppCompatActivity() {
             val username = binding.emailInput.text
             val password = binding.passwordInput.text
 
-            loginViewModel.login(username.toString(),password.toString())
-            loginViewModel.action.observe(this,{
-                when(it){
+            loginViewModel.login(username.toString(), password.toString())
+            loginViewModel.action.observe(this, {
+                when (it) {
+
                     LoginViewModel.ACTION_LOGIN_SUCCESS -> {
-                        Snackbar.make(binding.root, "Berhasil Login", Snackbar.LENGTH_SHORT)
-                            .show()
+//                        val snackbar = Snackbar.make(
+//                            binding.root,
+//                            R.string.successLogin,
+//                            Snackbar.LENGTH_SHORT
+//                        )
+//                        snackbar.setBackgroundTint(Color.parseColor("#ffe97d"))
+
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     }
@@ -42,29 +50,31 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
-            }
+        }
 
 
-        binding.btnSignup.setOnClickListener{
+        binding.btnSignup.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
 
-
-        }
+    }
 
     private fun loginFailed() {
-        Snackbar.make(binding.root, "Login Error", Snackbar.LENGTH_SHORT).show()
+        val snackbar = Snackbar.make(binding.root, "Login Error", Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ffb74d"))
+        snackbar.show()
     }
 
     private fun loginError() {
-        Snackbar.make(binding.root, "Login Gagal", Snackbar.LENGTH_SHORT).show()
+        val snackbar = Snackbar.make(binding.root, "Login Gagal", Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ffb74d"))
+        snackbar.show()
     }
 
 
-
-    }
+}
 
 
 

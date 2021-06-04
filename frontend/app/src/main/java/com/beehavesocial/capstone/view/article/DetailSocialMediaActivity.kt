@@ -1,9 +1,13 @@
 package com.beehavesocial.capstone.view.article
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.beehavesocial.capstone.R
 import com.beehavesocial.capstone.databinding.ContentDetailSocialMediaBinding
 import com.beehavesocial.capstone.model.article.DetailArticleResponse
 import com.google.android.material.snackbar.Snackbar
@@ -38,11 +42,21 @@ class DetailSocialMediaActivity : AppCompatActivity() {
                 source2.text = article.data?.source
                 tvCreated.text = article.data?.createdAt
                 tvUpdated.text = article.data?.updatedAt
-                tvContent.text = article.data?.content
-                tvKeyword.text = article.data?.keyword
-                tvViewers.text = article.data?.viewers.toString().trim()
-                tvRating.text = article.data?.rating.toString().trim()
-                ratingBar.rating=article.data?.rating!!
+                tvContent.text =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Html.fromHtml(article.data?.content, Html.FROM_HTML_MODE_COMPACT)
+                    } else {
+                        Html.fromHtml(article.data?.content)
+                    }
+
+                ratingBarTotal.rating = article.data?.rating!!
+                ratingBarUser.rating =
+                    if (article.data?.userRating == null) {
+                        0F
+                    } else {
+                        article.data?.userRating
+                    }
+
             }
         }
     }
@@ -55,8 +69,9 @@ class DetailSocialMediaActivity : AppCompatActivity() {
             detailArticleViewModel.artData.observe(this, { article ->
                 detailArticle(article)
 //                Log.d("detailarticle", article.toString())
-                binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                binding.ratingBarUser.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
                     rated(rating.toInt(), id)
+
                 }
             })
         }
@@ -67,8 +82,10 @@ class DetailSocialMediaActivity : AppCompatActivity() {
         ratedViewModel.action.observe(this, {
             when (it) {
                 RatedViewModel.ACTION_RATED_SUCCESS -> {
-                    Snackbar.make(binding.root, "Berhasil Voting", Snackbar.LENGTH_SHORT)
-                        .show()
+                    val snackbar =
+                        Snackbar.make(binding.root, R.string.successVoting, Snackbar.LENGTH_SHORT)
+                    snackbar.setBackgroundTint(Color.parseColor("#ffb74d"))
+                    snackbar.show()
                 }
             }
         })

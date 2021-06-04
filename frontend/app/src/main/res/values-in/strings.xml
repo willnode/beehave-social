@@ -42,4 +42,9 @@
     <string name="published">Diplubikasikan</string>
     <string name="updated">Diperbarui</string>
     <string name="keyword">Kata Kunci :</string>
+    <string name="text_title">Judul</string>
+    <string name="success">Post Berhasil</string>
+    <string name="successLogin">Login Berhasil</string>
+    <string name="successVoting">Voting Berhasil</string>
+    <string name="your_rate">Rating Kamu</string>
 </resources>

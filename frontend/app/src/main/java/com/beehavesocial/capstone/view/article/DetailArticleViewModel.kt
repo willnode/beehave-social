@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beehavesocial.capstone.model.article.DetailArticleResponse
 import com.beehavesocial.capstone.repository.MainRepository
+import com.beehavesocial.capstone.utils.Constant
 import com.beehavesocial.capstone.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +19,7 @@ class DetailArticleViewModel @Inject constructor(
 
     fun getDetailArticle(id:Int){
         viewModelScope.launch {
-            when(val response = mainRepository.getDetailArticle(id)){
+            when(val response = mainRepository.getDetailArticle("Bearer ${Constant.BEARER}",id)){
                 is Resource.Success -> {
                     response.data?.let {
                         artData.postValue(it)

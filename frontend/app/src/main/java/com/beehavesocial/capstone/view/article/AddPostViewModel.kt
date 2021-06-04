@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beehavesocial.capstone.model.article.AddPostRequest
 import com.beehavesocial.capstone.repository.MainRepository
+import com.beehavesocial.capstone.utils.Constant
 import com.beehavesocial.capstone.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -32,7 +33,7 @@ class AddPostViewModel @Inject constructor(
             )
 
             Log.e("datakuku", userRequest.toString())
-            when(val response = mainRepository.addPost(userRequest)){
+            when(val response = mainRepository.addPost("Bearer ${Constant.BEARER}",userRequest)){
                 is Resource.Success -> {
                     if(response.data?.status == "success")
                       action.postValue(ACTION_INPUT_SUCCESS)

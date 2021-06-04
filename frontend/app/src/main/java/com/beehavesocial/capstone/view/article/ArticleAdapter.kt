@@ -44,6 +44,7 @@ class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.GridViewHolder>() {
             }
         }
     }
+
     fun setArticle(article: List<DataItem>?){
         if (article == null) return
         this.listArticle.clear()

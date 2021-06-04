@@ -11,6 +11,7 @@ import com.beehavesocial.capstone.view.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.provider.Settings
 import android.view.*
+import com.beehavesocial.capstone.utils.Constant
 import com.beehavesocial.capstone.view.AboutActivity
 import com.beehavesocial.capstone.view.DetailProfile
 import com.beehavesocial.capstone.view.login.LoginActivity
@@ -54,11 +55,11 @@ class SettingsFragment : Fragment()  {
           Log.d("Bearer", it.toString())
             binding.tvName.text=it.name
         })
-
-        binding.btnAccount.setOnClickListener {
-            val detail = Intent(getActivity(), DetailProfile::class.java)
-            startActivity(detail)
-        }
+//
+//        binding.btnAccount.setOnClickListener {
+//            val detail = Intent(getActivity(), DetailProfile::class.java)
+//            startActivity(detail)
+//        }
 
         binding.btnLanguange.setOnClickListener {
             val language = Intent(Settings.ACTION_LOCALE_SETTINGS)
@@ -72,6 +73,7 @@ class SettingsFragment : Fragment()  {
         }
 
         binding.btnLogout.setOnClickListener {
+            Constant.BEARER=""
             val logout = Intent(getActivity(), LoginActivity::class.java)
             startActivity(logout)
         }

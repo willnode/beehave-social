@@ -38,21 +38,26 @@ class SocialMediaFragment : Fragment() {
     private fun showArticle(){
         if (activity != null){
             val articleAdapter = ArticleAdapter()
-            articleViewModel.getArticle().observe(viewLifecycleOwner,{ article ->
+            articleViewModel.getArticle().observe(viewLifecycleOwner, { article ->
                 articleAdapter.setArticle(article)
-                with(binding.lvSocialMedia){
+                with(binding.lvSocialMedia) {
                     adapter = articleAdapter
-                    layoutManager = GridLayoutManager(context,2)
+                    layoutManager = GridLayoutManager(context, 2)
                     setHasFixedSize(true)
 //
 //                    articleViewModel.getArticle().observe(viewLifecycleOwner, {
 //                        if (it.isNotEmpty()) {
-                            articleAdapter.setArticle(article)
+                    articleAdapter.setArticle(article)
 //                        }
 //                    })
 
                 }
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showArticle()
     }
 }

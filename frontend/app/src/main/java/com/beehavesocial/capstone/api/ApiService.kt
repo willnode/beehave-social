@@ -22,11 +22,9 @@ ApiService {
     ): Response<ArticleResponse>
 
     @GET("wall/{id}")
-    suspend fun articleDetail(@Path("id") id: Int): Response<DetailArticleResponse>
-
-
-
-
+    suspend fun articleDetail(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int): Response<DetailArticleResponse>
 
     @POST("auth/register")
     suspend fun userRegister(
@@ -45,8 +43,9 @@ ApiService {
         @Body RatedRequest: RatedRequest
     ): Response<DetailArticleResponse>
 
-    @POST("wall/")
+    @POST("wall")
     suspend fun addPost(
+        @Header("Authorization") token: String,
         @Body addPostResponse: AddPostRequest
     ): Response<AddPostResponse>
 

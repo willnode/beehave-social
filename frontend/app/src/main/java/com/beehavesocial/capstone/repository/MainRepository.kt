@@ -26,8 +26,8 @@ class MainRepository @Inject constructor(
         }
     }
 
-    suspend fun addPost(addPostRequest: AddPostRequest): Resource<AddPostResponse>{
-        apiService.addPost(addPostRequest).let { response ->
+    suspend fun addPost(bearer: String, addPostRequest: AddPostRequest): Resource<AddPostResponse>{
+        apiService.addPost(bearer,addPostRequest).let { response ->
             if (response.isSuccessful){
                 response.body()?.let { return Resource.Success(it) }
             }
@@ -79,8 +79,8 @@ class MainRepository @Inject constructor(
         }
     }
 
-    suspend fun getDetailArticle(id: Int): Resource<DetailArticleResponse> {
-        apiService.articleDetail(id).let { response ->
+    suspend fun getDetailArticle(bearer: String,id: Int): Resource<DetailArticleResponse> {
+        apiService.articleDetail(bearer,id).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let { detail ->
                     return Resource.Success(detail)

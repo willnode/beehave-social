@@ -59,5 +59,5 @@ data class Data(
 	val predictedScore: Double? = null,
 
 	@field:SerializedName("user_rating")
-	val userRating: Any? = null
+	val userRating: Float? = null
 )
