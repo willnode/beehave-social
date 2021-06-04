@@ -79,6 +79,17 @@ class MainRepository @Inject constructor(
         }
     }
 
+    suspend fun search(keyword:String): Resource<ArticleResponse> {
+        apiService.search(keyword).let { response ->
+            if (response.isSuccessful) {
+                response.body()?.let { search ->
+                    return Resource.Success(search)
+                }
+            }
+            return Resource.Error(response.message())
+        }
+    }
+
     suspend fun getDetailArticle(bearer: String,id: Int): Resource<DetailArticleResponse> {
         apiService.articleDetail(bearer,id).let { response ->
             if (response.isSuccessful) {

@@ -39,4 +39,25 @@ class ArticleViewModel @Inject constructor(
         return responseArticle
     }
 
+    fun search(keyword:String) :MutableLiveData<ArrayList<DataItem>>{
+        viewModelScope.launch {
+            val articleResponse: ArrayList<DataItem> = arrayListOf()
+            when (val response = mainRepository.search(keyword)) {
+                is Resource.Success -> {
+                    response.data?.data?.forEach { article ->
+                        articleResponse.add(article)
+                    }
+                    responseArticle.postValue(articleResponse)
+
+                }
+                is Resource.Error -> {
+                    response.message
+
+                }
+            }
+        }
+        return responseArticle
+    }
+
+
 }

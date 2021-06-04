@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +56,43 @@ class SocialMediaFragment : Fragment() {
             })
         }
     }
+
+    private fun search(){
+    binding.searchView.apply {
+        setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+                articleViewModel.search(query)
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isNotEmpty()) {
+                    articleViewModel.search(newText)
+                } else {
+                    showSearch("")
+
+                }
+                return true
+            }
+        })
+    }
+    }
+
+    private fun showSearch(keyword:String){
+        if (activity != null){
+            val articleAdapter = ArticleAdapter()
+            articleViewModel.search(keyword).observe(viewLifecycleOwner, { article ->
+                articleAdapter.setArticle(article)
+                with(binding.lvSocialMedia) {
+                    adapter = articleAdapter
+                    layoutManager = GridLayoutManager(context, 2)
+                    setHasFixedSize(true)
+                    articleAdapter.setArticle(article)
+
+                }
+            })
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()

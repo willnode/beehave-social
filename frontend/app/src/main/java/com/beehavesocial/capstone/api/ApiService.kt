@@ -24,7 +24,14 @@ ApiService {
     @GET("wall/{id}")
     suspend fun articleDetail(
         @Header("Authorization") token: String,
-        @Path("id") id: Int): Response<DetailArticleResponse>
+        @Path("id") id: Int
+    ): Response<DetailArticleResponse>
+
+    @GET("wall/{keyword}")
+    suspend fun search(
+        @Path("keyword") keyword: String
+    ): Response<ArticleResponse>
+
 
     @POST("auth/register")
     suspend fun userRegister(
