@@ -51,7 +51,7 @@ export default function () {
             throw new HttpError('Artikel tidak ditemukan', 404);
         if (u) {
             // analytics
-            var analytics = wfm.atWallAndUser(u.id, id);
+            var analytics = await wfm.atWallAndUser(u.id, id);
             if (!analytics) {
                 await wfm.save({
                     user_id: u.id,

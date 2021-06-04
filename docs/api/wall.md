@@ -46,3 +46,22 @@
     "rating": 4
 }
 ```
+
+### Submit Wall (POST /wall/)
+
+Request
+```json
+{
+    "title":"F",
+    "content":"halo",
+    "source":"https://google.com"
+}
+```
+Response
+
+```json
+{
+    "status":"success",
+    "id":40
+}
+```
